@@ -51,11 +51,12 @@ public abstract class Human implements HumanInterface {
     private String eyes;
     private String hair;
 
-    void setName(String name) {
-        this.name = name;
-    }
-    String getName(){
+    public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
