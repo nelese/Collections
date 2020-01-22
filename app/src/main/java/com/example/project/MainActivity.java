@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.HashMap;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -51,5 +53,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    private void print (HashMap<Integeer,Cat> cats){
+        for (int i=0; i<cats.size(); i++){
+            System.out.println("Cat name" + cats.get(i).getName() );
+        }
     }
 }
