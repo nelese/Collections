@@ -17,59 +17,40 @@ import android.widget.TextView;
 import com.example.pupil.myapplication.папка.MyAdapter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 
 import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
-    Button btnClose;
-    Button createPupil;
-    ArrayList<Pupil> arr;
-    RecyclerView list;
-    EditText edName;
-    EditText edSurname;
+    private ArrayList<Cat> cats;
+    private HashMap<Integer,Cat> map;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        arr = new ArrayList<>();
-        final TextView name = findViewById(R.id.name);
-        final TextView surname = findViewById(R.id.surname);
-
-        btnClose = findViewById(R.id.btnClose);
-        list = findViewById(R.id.list);
-        edName = findViewById(R.id.edName);
-        edSurname = findViewById(R.id.edSurname);
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        createPupil = findViewById(R.id.createPupil);
-        createPupil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Pupil pupil = createPupil(edName.getText().toString(),edSurname.getText().toString());
-                arr.add(pupil);
-                name.setText(pupil.getName());
-                surname.setText(pupil.getSurname());
-                list.setLayoutManager(new LinearLayoutManager(getBaseContext()));
-                list.setAdapter(new MyAdapter(arr));
-                list.getAdapter().notifyDataSetChanged();
-            }
-        });
-
+        cats = catArrayList();
+        map = catHashMap();
     }
 
-    public Pupil createPupil(String name, String surname) {
-
-        Pupil p = new Pupil(name, surname);
-        return p;
+    private ArrayList<Cat> catArrayList(){
+      ArrayList cats = new ArrayList();
+      for (int i=0; i<10; i++){
+          cats.add(new Cat("Simon", (int) (Math.random()*10)));
+      }
+      return cats;
     }
 
+    private HashMap<Integer, Cat> catHashMap(){
+        HashMap map1 = new HashMap();
+        for (int i=0; i<10; i++){
+            map1.put(i,new Cat("Simon", (int) (Math.random()*10)));
+        }
+        return map1;
+    }
 
 }
+
+
+
